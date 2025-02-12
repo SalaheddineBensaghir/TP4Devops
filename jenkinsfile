@@ -23,11 +23,13 @@ pipeline {
                 }
             }
         }
-        stage('Test image') {
-            steps{
-                script {
 
+        stage('Test image') {
+            steps {
+                script {
                     echo "Tests passed"
+                } // Ajout de l'accolade fermante manquante ici
+            }
         }
 
         stage('Publish Image') {
