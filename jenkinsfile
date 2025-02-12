@@ -1,6 +1,6 @@
 pipeline {
 environment {
-registry = "kelguemmat/tp4"
+registry = "salaheddineben/tp5devops"
 registryCredential = 'dockerhub'
 dockerImage = ''
 }
@@ -8,7 +8,7 @@ agent any
 stages {
 stage('Cloning Git') {
 steps {
-git 'https://github.com/kelguemmat/tp4master21-22'
+git 'https://github.com/SalaheddineBensaghir/TP4Devops.git'
 }
 }
 stage('Building image') {
@@ -23,15 +23,13 @@ steps{
 script {
 
 echo "Tests passed"
-}
-}
-}
-stage('Publish Image') {
-steps{
-script {
-docker.withRegistry( '', registryCredential ) {
-dockerImage.push()
-}
+} stage('Publish Image') {
+             steps {
+                 script {
+                     // Authenticate with Docker Hub and push the image
+                     docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
+                         dockerImage.push()
+                         }
 }
 }
 }
